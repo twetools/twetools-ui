@@ -1,0 +1,41 @@
+{
+  "name": "twetools-ui",
+  "version": "1.0.0",
+  "description": "Shared UI component library for twetools applications",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && npm run copy-css",
+    "copy-css": "copyfiles -u 1 src/**/*.css dist/",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "@tabler/icons-react": "^3.35.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "copyfiles": "^2.4.1",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "twetools",
+    "typescript"
+  ],
+  "author": "Troy Edwards <troy@twetools.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twetools-admin/twetools-ui.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
