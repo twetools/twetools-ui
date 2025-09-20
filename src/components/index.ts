@@ -103,6 +103,10 @@ export { default as UserMetaCard } from "./user-profile/UserMetaCard";
 
 // Layout Components
 export { default as BaseAppSidebar } from "./layout/BaseAppSidebar";
+export { default as AppSidebar } from "./layout/AppSidebar";
+export { default as AppHeader } from "./layout/AppHeader";
+export { default as Backdrop } from "./layout/Backdrop";
+export { default as SidebarWidget } from "./layout/SidebarWidget";
 export type {
   NavItem,
   NavSection,
@@ -114,3 +118,23 @@ export type {
 export { ErrorProvider, useError } from "../context/ErrorContext";
 export { DevModeProvider, useDevMode } from "../context/DevModeContext";
 export { ThemeProvider, useTheme } from "../context/ThemeContext";
+export { SidebarProvider, useSidebar } from "../context/SidebarContext";
+export { default as DevModeToggle } from "../context/DevModeToggle";
+
+// Hooks
+export { default as useFormAutoFocus } from "../hooks/useFormAutoFocus";
+export { useFocusNavigation } from "../hooks/useFocusNavigation";
+export { useSmartForm } from "../hooks/useSmartForm";
+export { useErrorHandler } from "../hooks/useErrorHandler";
+export { useDebounce } from "../hooks/useDebounce";
+export { default as useGoBack } from "../hooks/useGoBack";
+export { useModal } from "../hooks/useModal";
+export { useFocusDebug, FocusDebugger } from "../hooks/useFocusDebug";
+
+// Hook Types
+export type { UseFormAutoFocusOptions } from "../hooks/useFormAutoFocus";
+export type { FocusNavigationOptions } from "../hooks/useFocusNavigation";
+export type {
+  UseSmartFormOptions,
+  UseSmartFormReturn,
+} from "../hooks/useSmartForm";

@@ -1,3 +1,5 @@
+"use client";
+
 import { useError } from "@/context/ErrorContext";
 
 /**

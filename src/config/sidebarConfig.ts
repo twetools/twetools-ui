@@ -23,7 +23,7 @@ export const getTweetoolsUiSidebarConfig = (): AppSidebarConfig => ({
         {
           name: "Admin Examples",
           icon: createElement(AdminIcon, { className: "w-6 h-6" }),
-          subItems: [{ name: "User Management", path: "/user-management" }],
+          subItems: [{ name: "User Management", path: "/users" }],
         },
 
         {

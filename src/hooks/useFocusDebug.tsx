@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
 
 /**
@@ -46,18 +48,14 @@ export function useFocusDebug(options: FocusDebugOptions = {}) {
     // Focus change logger
     const handleFocusIn = (e: FocusEvent) => {
       if (logFocusChanges) {
-        console.log(
-          `🎯 [${componentName}] Focus IN:`,
-          e.target,
-          {
-            tagName: (e.target as HTMLElement)?.tagName,
-            id: (e.target as HTMLElement)?.id,
-            className: (e.target as HTMLElement)?.className,
-            tabIndex: (e.target as HTMLElement)?.tabIndex,
-          }
-        );
+        console.log(`🎯 [${componentName}] Focus IN:`, e.target, {
+          tagName: (e.target as HTMLElement)?.tagName,
+          id: (e.target as HTMLElement)?.id,
+          className: (e.target as HTMLElement)?.className,
+          tabIndex: (e.target as HTMLElement)?.tabIndex,
+        });
       }
-      
+
       if (highlightFocusedElement) {
         (e.target as HTMLElement)?.classList.add("focus-debug-highlight");
       }
@@ -73,10 +71,10 @@ export function useFocusDebug(options: FocusDebugOptions = {}) {
     if (showFocusableElements) {
       const focusableSelector = [
         'input:not([disabled]):not([type="hidden"])',
-        'select:not([disabled])',
-        'textarea:not([disabled])',
-        'button:not([disabled])',
-        'a[href]',
+        "select:not([disabled])",
+        "textarea:not([disabled])",
+        "button:not([disabled])",
+        "a[href]",
         '[tabindex]:not([tabindex="-1"])',
       ].join(", ");
 
@@ -97,7 +95,7 @@ export function useFocusDebug(options: FocusDebugOptions = {}) {
     return () => {
       document.removeEventListener("focusin", handleFocusIn);
       document.removeEventListener("focusout", handleFocusOut);
-      
+
       if (debugStyle.current) {
         debugStyle.current.remove();
         debugStyle.current = null;
@@ -108,7 +106,13 @@ export function useFocusDebug(options: FocusDebugOptions = {}) {
         el.classList.remove("focus-debug-focusable");
       });
     };
-  }, [enabled, logFocusChanges, highlightFocusedElement, showFocusableElements, componentName]);
+  }, [
+    enabled,
+    logFocusChanges,
+    highlightFocusedElement,
+    showFocusableElements,
+    componentName,
+  ]);
 
   return {
     /**
@@ -116,14 +120,14 @@ export function useFocusDebug(options: FocusDebugOptions = {}) {
      */
     debugFocusableElements: (container?: HTMLElement) => {
       if (!enabled) return;
-      
+
       const root = container || document;
       const focusableSelector = [
         'input:not([disabled]):not([type="hidden"])',
-        'select:not([disabled])',
-        'textarea:not([disabled])',
-        'button:not([disabled])',
-        'a[href]',
+        "select:not([disabled])",
+        "textarea:not([disabled])",
+        "button:not([disabled])",
+        "a[href]",
         '[tabindex]:not([tabindex="-1"])',
       ].join(", ");
 
@@ -146,18 +150,21 @@ export function useFocusDebug(options: FocusDebugOptions = {}) {
      */
     focusFirst: (container?: HTMLElement) => {
       if (!enabled) return false;
-      
+
       const root = container || document;
       const firstFocusable = root.querySelector<HTMLElement>(
         'input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
       );
-      
+
       if (firstFocusable) {
         firstFocusable.focus();
-        console.log(`🎯 [${componentName}] Focused first element:`, firstFocusable);
+        console.log(
+          `🎯 [${componentName}] Focused first element:`,
+          firstFocusable
+        );
         return true;
       }
-      
+
       console.warn(`⚠️ [${componentName}] No focusable element found`);
       return false;
     },
@@ -167,10 +174,10 @@ export function useFocusDebug(options: FocusDebugOptions = {}) {
 /**
  * React component for debugging focus in development
  */
-export function FocusDebugger({ 
+export function FocusDebugger({
   componentName = "Focus Debugger",
-  children 
-}: { 
+  children,
+}: {
   componentName?: string;
   children?: React.ReactNode;
 }) {
@@ -182,16 +189,18 @@ export function FocusDebugger({
 
   return (
     <div>
-      <div style={{ 
-        padding: "8px", 
-        background: "#f0f0f0", 
-        border: "1px solid #ccc", 
-        fontSize: "12px",
-        fontFamily: "monospace" 
-      }}>
+      <div
+        style={{
+          padding: "8px",
+          background: "#f0f0f0",
+          border: "1px solid #ccc",
+          fontSize: "12px",
+          fontFamily: "monospace",
+        }}
+      >
         <strong>🔍 Focus Debug: {componentName}</strong>
-        <button 
-          onClick={() => debugFocusableElements()} 
+        <button
+          onClick={() => debugFocusableElements()}
           style={{ marginLeft: "8px", padding: "2px 6px" }}
         >
           Log Focusable
