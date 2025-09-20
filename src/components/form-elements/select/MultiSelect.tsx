@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import BaseFormControl from "@/components/form-elements/form/BaseFormControl";
 

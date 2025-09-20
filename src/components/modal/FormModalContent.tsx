@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
 import useFormAutoFocus from "@/hooks/useFormAutoFocus";
 

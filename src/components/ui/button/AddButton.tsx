@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useId } from "react";
 import Button from "./Button";
 import { IconPlus as PlusIcon } from "@tabler/icons-react";

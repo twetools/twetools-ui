@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useMemo, useCallback } from "react";
 import DatePicker from "@/components/form-elements/dates/DatePicker";
 import FormField from "@/components/form-elements/form/FormField";
@@ -268,7 +270,3 @@ export default function DateField({
     </FormField>
   );
 }
-
-
-
-

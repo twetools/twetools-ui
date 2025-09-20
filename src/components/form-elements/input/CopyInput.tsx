@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 interface CopyableInputProps {
@@ -75,7 +77,3 @@ const CopyableInput: React.FC<CopyableInputProps> = ({
 };
 
 export default CopyableInput;
-
-
-
-

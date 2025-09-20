@@ -1,3 +1,5 @@
+"use client";
+
 import { IconChevronDown as DropdownIcon } from "@tabler/icons-react";
 import React, { useEffect, useState } from "react";
 import BaseFormControl from "@/components/form-elements/form/BaseFormControl";

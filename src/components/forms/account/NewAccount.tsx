@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import InputField from "@/components/form-elements/input/InputField";
 import NameField from "@/components/form-elements/input/NameField";

@@ -2,32 +2,43 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useDebounce } from "@/hooks/useDebounce";
-import { getAllUsers, User } from "@/lib/users/actions";
-import {
-  IconUsers as UsersIcon,
-  IconBriefcase as ClientIcon,
-  IconLayoutSidebar as PageIcon,
-  IconUserCog as UserCogIcon,
-} from "@tabler/icons-react";
 import Badge from "@/components/ui/badge/Badge";
 
-interface SearchResult {
+export interface SearchResult {
   id: string;
   title: string;
   subtitle?: string;
-  type: "user" | "page";
+  type: string;
   path: string;
   icon?: React.ReactNode;
 }
 
-interface GlobalSearchProps {
+export interface SearchCategory {
+  name: string;
+  type: string;
+  searchFunction: (query: string) => Promise<SearchResult[]>;
+  icon?: React.ReactNode;
+  badgeColor?: string;
+}
+
+export interface GlobalSearchProps {
   placeholder?: string;
   className?: string;
+  searchCategories: SearchCategory[];
+  staticPages?: SearchResult[];
+  maxResults?: number;
+  debounceMs?: number;
+  onResultSelect?: (result: SearchResult) => void;
 }
 
 const GlobalSearch: React.FC<GlobalSearchProps> = ({
   placeholder = "Search or type command...",
   className = "",
+  searchCategories,
+  staticPages = [],
+  maxResults = 10,
+  debounceMs = 300,
+  onResultSelect,
 }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -39,25 +50,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({
   const resultsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  const debouncedQuery = useDebounce(query, 300);
-
-  // Static page navigation data - only user and generic pages for twetools-ui
-  const pageData: SearchResult[] = [
-    {
-      id: "page-users",
-      title: "Users",
-      subtitle: "User management and administration",
-      type: "page",
-      path: "/users",
-    },
-    {
-      id: "page-examples",
-      title: "Component Examples",
-      subtitle: "UI component library examples",
-      type: "page",
-      path: "/examples",
-    },
-  ];
+  const debouncedQuery = useDebounce(query, debounceMs);
 
   const performSearch = async (
     searchQuery: string
@@ -67,51 +60,29 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({
     setIsLoading(true);
 
     try {
-      const query = searchQuery.toLowerCase();
+      const queryLower = searchQuery.toLowerCase();
       const allResults: SearchResult[] = [];
 
-      // Search contacts section removed - twetools-ui only includes User data
-
-      // Search users
-      try {
-        const users = await getAllUsers();
-        const userResults = users
-          .filter((user: User) => {
-            const name = user.name || "";
-            const email = user.email || "";
-            const phone = user.phone || "";
-            return (
-              name.toLowerCase().includes(query) ||
-              email.toLowerCase().includes(query) ||
-              phone.toLowerCase().includes(query)
-            );
-          })
-          .map((user: User) => ({
-            id: `user-${user.userID}`,
-            title: user.name || "Unknown User",
-            subtitle: user.email
-              ? `Email: ${user.email}`
-              : `Phone: ${user.phone || "N/A"}`,
-            type: "user" as const,
-            path: "/users",
-          }));
-        allResults.push(...userResults);
-      } catch (error) {
-        console.error("Error fetching users:", error);
+      // Search through all configured categories
+      for (const category of searchCategories) {
+        try {
+          const categoryResults = await category.searchFunction(queryLower);
+          allResults.push(...categoryResults);
+        } catch (error) {
+          console.error(`Error searching ${category.name}:`, error);
+        }
       }
 
-      // Search accounts section removed - twetools-ui only includes User data
-
-      // Search pages
-      const pageResults = pageData.filter(
+      // Search static pages
+      const pageResults = staticPages.filter(
         (page: SearchResult) =>
-          page.title.toLowerCase().includes(query) ||
-          page.subtitle?.toLowerCase().includes(query)
+          page.title.toLowerCase().includes(queryLower) ||
+          page.subtitle?.toLowerCase().includes(queryLower)
       );
       allResults.push(...pageResults);
 
       setIsLoading(false);
-      return allResults.slice(0, 10); // Limit to 10 results
+      return allResults.slice(0, maxResults);
     } catch (error) {
       console.error("Search error:", error);
       setIsLoading(false);
@@ -169,45 +140,39 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({
   }, [results]);
 
   const handleResultClick = (result: SearchResult) => {
-    router.push(result.path);
+    if (onResultSelect) {
+      onResultSelect(result);
+    } else {
+      router.push(result.path);
+    }
     setIsOpen(false);
     setQuery("");
     inputRef.current?.blur();
   };
 
-  const getResultIcon = (type: string) => {
-    switch (type) {
-      case "contact":
-        return <UsersIcon className="text-brand-500 dark:text-brand-400" />;
-      case "user":
-        return <UserCogIcon className="text-brand-500 dark:text-brand-400" />;
-      case "account":
-        return <ClientIcon className="text-brand-500 dark:text-brand-400" />;
-      case "page":
-        return <PageIcon className="text-brand-500 dark:text-brand-400" />;
-      default:
-        return null;
+  const getResultIcon = (result: SearchResult) => {
+    // First check if result has its own icon
+    if (result.icon) {
+      return result.icon;
     }
+
+    // Then check category icons
+    const category = searchCategories.find((cat) => cat.type === result.type);
+    if (category?.icon) {
+      return category.icon;
+    }
+
+    return null;
   };
 
   const getTypeLabel = (type: string) => {
-    switch (type) {
-      case "contact":
-        return "Contact";
-      case "user":
-        return "User";
-      case "account":
-        return "Account";
-      case "page":
-        return "Page";
-      default:
-        return "";
-    }
+    const category = searchCategories.find((cat) => cat.type === type);
+    return category?.name || type;
   };
 
-  const getBadgeColor = (type: string): "primary" => {
-    // Use default badge color for consistency across all search result types
-    return "primary";
+  const getBadgeColor = (result: SearchResult) => {
+    const category = searchCategories.find((cat) => cat.type === result.type);
+    return category?.badgeColor || "primary";
   };
 
   return (
@@ -281,7 +246,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({
                   }`}
                 >
                   <div className="flex-shrink-0 w-6 h-6 text-brand-500 dark:text-brand-400 [&>svg]:w-full [&>svg]:h-full">
-                    {getResultIcon(result.type)}
+                    {getResultIcon(result)}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
@@ -290,7 +255,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({
                       </span>
                       <Badge
                         variant="light"
-                        color={getBadgeColor(result.type)}
+                        color={getBadgeColor(result) as any}
                         size="sm"
                       >
                         {getTypeLabel(result.type)}

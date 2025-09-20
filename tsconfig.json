@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,17 +28,28 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/app/(pages)/layout.testtsx",
-    "src/components/common/ChartTab.tsxtest",
-    "src/components/common/ComponentCard.tsxtest"
+    "src/components/**/*.ts",
+    "src/components/**/*.tsx",
+    "src/context/**/*.ts",
+    "src/hooks/**/*.ts",
+    "src/lib/**/*.ts",
+    "src/types/**/*.ts",
+    "src/utils/**/*.ts",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "**/*.backup.*"]
+  "exclude": [
+    "node_modules",
+    "**/*.backup.*",
+    "app/**/*",
+    "src/app/**/*",
+    "dist/**/*",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ]
 }
