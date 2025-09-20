@@ -1,14 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import AddButton from "../../../components/button/AddButton";
-import SaveButton from "../../../components/button/SaveButton";
-import CancelButton from "../../../components/button/CancelButton";
-import CloseButton from "../../../components/button/CloseButton";
+import AddButton from "../../../components/ui/button/AddButton";
+import SaveButton from "../../../components/ui/button/SaveButton";
+import CancelButton from "../../../components/ui/button/CancelButton";
+import CloseButton from "../../../components/ui/button/CloseButton";
 
 // Example ComponentCard for twetools-ui examples
-const ComponentCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
+const ComponentCard = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-    <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{title}</h2>
+    <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+      {title}
+    </h2>
     {children}
   </div>
 );

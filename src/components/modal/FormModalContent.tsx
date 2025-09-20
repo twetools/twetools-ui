@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import useFormAutoFocus from "../../hooks/useFormAutoFocus";
+import useFormAutoFocus from "@/hooks/useFormAutoFocus";
 
 interface FormModalContentProps {
   children: React.ReactNode;

@@ -4,10 +4,16 @@
   "description": "Shared UI component library for twetools applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "style": "dist/compiled.css",
   "scripts": {
-    "build": "tsc && npm run copy-css",
-    "copy-css": "copyfiles -u 1 src/**/*.css dist/",
+    "build": "npm run examples:build && npm run build-lib && npm run extract-css",
+    "build-lib": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json && npm run copy-css",
+    "copy-css": "copyfiles -u 1 src/**/*.css dist/ && copyfiles -f app/globals.css dist/",
+    "extract-css": "powershell -Command \"$cssFiles = Get-ChildItem .next/static/css/*.css | Sort-Object Length -Descending; Copy-Item $cssFiles[0].FullName dist/compiled.css\"",
     "dev": "tsc --watch",
+    "examples:dev": "next dev -p 3000",
+    "examples:build": "next build",
+    "examples:start": "next start -p 3000",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,9 +23,16 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@types/node": "^24.5.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "copyfiles": "^2.4.1",
+    "eslint": "^9.36.0",
+    "eslint-config-next": "^15.5.3",
+    "next": "^15.5.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tsc-alias": "^1.8.16",
     "typescript": "^5.0.0"
   },
   "keywords": [
@@ -37,5 +50,18 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "apexcharts": "^5.3.5",
+    "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
+    "flatpickr": "^4.6.13",
+    "react-apexcharts": "^1.7.0",
+    "react-dropzone": "^14.3.8",
+    "simplebar-react": "^3.3.2",
+    "swiper": "^12.0.2",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.13"
   }
 }

@@ -5,7 +5,7 @@ import {
   IconDownload as SaveIcon,
 } from "@tabler/icons-react";
 import ModalAlertConfirm from "../modal/ModalAlertConfirm";
-import { useSmartForm } from "../../hooks/useSmartForm";
+import { useSmartForm } from "@/hooks/useSmartForm";
 
 // Components that will be provided by the consuming application
 export interface BaseFormDependencies {
