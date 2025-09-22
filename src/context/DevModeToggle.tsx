@@ -9,6 +9,7 @@ export default function DevModeToggle() {
   return (
     <button
       onClick={toggle}
+      tabIndex={-1}
       aria-pressed={enabled}
       title="Toggle Developer Mode"
       className={`inline-flex items-center justify-center w-10 h-10 rounded-lg font-medium gap-2 transition

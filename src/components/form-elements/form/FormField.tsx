@@ -1,17 +1,46 @@
 import React from "react";
 import Label from "@/components/form-elements/input/Label";
 
+/**
+ * FormField component props
+ */
 interface FormFieldProps {
+  /** The label text for the form field */
   label: string;
+  /** The HTML id that this label is associated with */
   htmlFor: string;
+  /** Error message to display below the field */
   error?: string;
+  /** Helpful hint text to display below the field */
   hint?: string;
+  /** The form input element */
   children: React.ReactNode;
+  /** Additional CSS classes */
   className?: string;
-  required?: boolean; // New prop to show asterisk
-  hasValue?: boolean; // New prop to indicate if field has content
-  hasBeenTouched?: boolean; // New prop to track user interaction
+  /** Whether this field is required */
+  required?: boolean;
+  /** Whether the field currently has a value (for styling) */
+  hasValue?: boolean;
+  /** Whether the user has interacted with this field */
+  hasBeenTouched?: boolean;
 }
+
+/**
+ * A reusable form field wrapper that provides consistent styling,
+ * labels, error states, and accessibility features.
+ *
+ * @example
+ * ```tsx
+ * <FormField
+ *   label="Email"
+ *   htmlFor="email"
+ *   required
+ *   error={errors.email}
+ * >
+ *   <InputField type="email" id="email" />
+ * </FormField>
+ * ```
+ */
 
 const FormField: React.FC<FormFieldProps> = ({
   label,
@@ -52,7 +81,3 @@ const FormField: React.FC<FormFieldProps> = ({
 };
 
 export default FormField;
-
-
-
-

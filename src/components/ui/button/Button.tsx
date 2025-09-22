@@ -1,14 +1,40 @@
 import React, { ReactNode } from "react";
 
+/**
+ * Button component props extending standard HTML button attributes
+ */
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode; // Button text or content
-  size?: "sm" | "md"; // Button size (matching template)
-  variant?: "primary" | "outline" | "ghost" | "danger" | "success"; // Button variant
-  startIcon?: ReactNode; // Icon before the text
-  endIcon?: ReactNode; // Icon after the text
-  loading?: boolean; // Loading state
+  /** Button content (text, icons, etc.) */
+  children: ReactNode;
+  /** Button size variant */
+  size?: "sm" | "md";
+  /** Button visual style variant */
+  variant?: "primary" | "outline" | "ghost" | "danger" | "success";
+  /** Icon to display before the button text */
+  startIcon?: ReactNode;
+  /** Icon to display after the button text */
+  endIcon?: ReactNode;
+  /** Whether the button is in loading state */
+  loading?: boolean;
+  /** Additional CSS classes */
   className?: string;
 }
+
+/**
+ * A flexible button component with multiple variants, sizes, and icon support.
+ * Includes loading states and full accessibility features.
+ *
+ * @example
+ * ```tsx
+ * <Button variant="primary" size="md" onClick={handleClick}>
+ *   Click me
+ * </Button>
+ *
+ * <Button variant="outline" startIcon={<SaveIcon />} loading={saving}>
+ *   Save Changes
+ * </Button>
+ * ```
+ */
 
 const Button: React.FC<ButtonProps> = ({
   children,
