@@ -1,13 +1,8 @@
+"use client";
+
 import UserProfilePage from "../../../src/components/pages/UserProfilePage";
 import type { UserProfileData } from "../../../src/components/pages/UserProfilePage";
-import { Metadata } from "next";
 import React from "react";
-
-export const metadata: Metadata = {
-  title: "Profile Demo | twetools-ui Component Library",
-  description:
-    "Demonstration of the UserProfilePage component from twetools-ui library",
-};
 
 // Example user data - in a real application, this would come from an API/database
 const exampleUserData: UserProfileData = {
