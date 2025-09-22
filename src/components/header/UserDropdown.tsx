@@ -39,6 +39,7 @@ export default function UserDropdown() {
     <div className="relative">
       <button
         onClick={toggleDropdown}
+        tabIndex={-1}
         className="flex items-center dropdown-toggle text-gray-700 dark:text-gray-400 dropdown-toggle"
       >
         <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
