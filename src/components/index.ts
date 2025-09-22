@@ -103,6 +103,12 @@ export { default as ThemeTogglerTwo } from "./common/ThemeTogglerTwo";
 export { default as UserInfoCard } from "./user-profile/UserInfoCard";
 export { default as UserAddressCard } from "./user-profile/UserAddressCard";
 export { default as UserMetaCard } from "./user-profile/UserMetaCard";
+export { default as UserProfilePage } from "./pages/UserProfilePage";
+export type { 
+  UserProfileData, 
+  UserProfileHandlers, 
+  UserProfileConfig 
+} from "./pages/UserProfilePage";
 
 // Layout Components
 export { default as BaseAppSidebar } from "./layout/BaseAppSidebar";
