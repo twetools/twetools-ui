@@ -61,6 +61,9 @@ export { default as SignInForm } from "./auth/SignInForm";
 export { default as SignUpForm } from "./auth/SignUpForm";
 export { AuthProvider } from "../context/AuthContext";
 
+// Form Components
+export { default as BaseForm } from "./forms/BaseForm";
+
 // Admin Components
 export { default as NewUser } from "./forms/user/NewUser";
 
@@ -105,8 +108,11 @@ export { default as UserMetaCard } from "./user-profile/UserMetaCard";
 export { default as BaseAppSidebar } from "./layout/BaseAppSidebar";
 export { default as AppSidebar } from "./layout/AppSidebar";
 export { default as AppHeader } from "./layout/AppHeader";
+export { default as AppLayout } from "./layout/AppLayout";
+export { default as AppRootLayout } from "./layout/AppRootLayout";
 export { default as Backdrop } from "./layout/Backdrop";
 export { default as SidebarWidget } from "./layout/SidebarWidget";
+export { default as ThemeScript } from "./common/ThemeScript";
 export type {
   NavItem,
   NavSection,
