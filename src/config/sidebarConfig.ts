@@ -1,7 +1,6 @@
 ﻿import { createElement } from "react";
 import {
   IconHome as HomeIcon,
-  IconLock as AuthIcon,
   IconForms as FormElementsIcon,
   IconLayoutSidebar as PageIcon,
   IconComponents as UIElementsIcon,

@@ -1,14 +1,34 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 
+/**
+ * Modal component props
+ */
 interface ModalProps {
+  /** Controls whether the modal is visible */
   isOpen: boolean;
+  /** Callback function called when modal should close */
   onClose: () => void;
+  /** Additional CSS classes to apply to the modal */
   className?: string;
+  /** Modal content */
   children: React.ReactNode;
+  /** Whether to show the default close button */
   showCloseButton?: boolean;
+  /** Whether to render the modal in fullscreen mode */
   isFullscreen?: boolean;
 }
+
+/**
+ * A reusable modal component with built-in focus management and accessibility features.
+ *
+ * @example
+ * ```tsx
+ * <Modal isOpen={isOpen} onClose={handleClose}>
+ *   <div>Modal content</div>
+ * </Modal>
+ * ```
+ */
 
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
@@ -55,17 +75,24 @@ export const Modal: React.FC<ModalProps> = ({
     : "relative w-full rounded-3xl bg-white dark:bg-gray-900";
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center overflow-y-auto modal z-99999">
+    <div
+      className="fixed inset-0 flex items-center justify-center overflow-y-auto modal z-99999"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
       {!isFullscreen && (
         <div
           className="fixed inset-0 h-full w-full bg-gray-400/50 backdrop-blur-[32px]"
           onClick={onClose}
+          aria-label="Close modal"
         />
       )}
       <div ref={modalRef} className={`${contentClasses} ${className || ""}`}>
         {showCloseButton && (
           <button
             onClick={onClose}
+            aria-label="Close modal"
             className="absolute right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-md border border-gray-300 bg-white hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white sm:right-6 sm:top-6 sm:h-11 sm:w-11"
           >
             <svg

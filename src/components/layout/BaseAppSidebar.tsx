@@ -5,11 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Badge from "../ui/badge/Badge";
 import { useDevMode } from "../../context/DevModeContext";
-import type {
-  NavItem,
-  NavSection,
-  AppSidebarConfig,
-} from "../../types/navigation";
+import type { NavItem, AppSidebarConfig } from "../../types/navigation";
 
 import {
   IconChevronDown as DropdownIcon,

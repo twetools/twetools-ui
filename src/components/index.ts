@@ -130,7 +130,6 @@ export { useErrorHandler } from "../hooks/useErrorHandler";
 export { useDebounce } from "../hooks/useDebounce";
 export { default as useGoBack } from "../hooks/useGoBack";
 export { useModal } from "../hooks/useModal";
-export { useFocusDebug, FocusDebugger } from "../hooks/useFocusDebug";
 
 // Hook Types
 export type { UseFormAutoFocusOptions } from "../hooks/useFormAutoFocus";

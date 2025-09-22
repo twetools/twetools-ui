@@ -35,7 +35,7 @@ const searchUsers = async (query: string): Promise<SearchResult[]> => {
         icon: <UsersIcon className="w-5 h-5" />,
       }));
   } catch (error) {
-    console.error("Error searching users:", error);
+    // Handle search error silently or use proper error handling
     return [];
   }
 };

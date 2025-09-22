@@ -28,6 +28,7 @@
     "node_modules",
     "dist",
     ".next",
-    "app/**/*"
+    "app/**/*",
+    "src/examples/**/*"
   ]
 }
