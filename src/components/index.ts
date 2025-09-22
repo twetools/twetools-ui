@@ -104,11 +104,17 @@ export { default as UserInfoCard } from "./user-profile/UserInfoCard";
 export { default as UserAddressCard } from "./user-profile/UserAddressCard";
 export { default as UserMetaCard } from "./user-profile/UserMetaCard";
 export { default as UserProfilePage } from "./pages/UserProfilePage";
-export type { 
-  UserProfileData, 
-  UserProfileHandlers, 
-  UserProfileConfig 
+export type {
+  UserProfileData,
+  UserProfileHandlers,
+  UserProfileConfig,
 } from "./pages/UserProfilePage";
+export { default as UserListPage } from "./pages/UserListPage";
+export type {
+  UserListData,
+  UserListHandlers,
+  UserListConfig,
+} from "./pages/UserListPage";
 
 // Layout Components
 export { default as BaseAppSidebar } from "./layout/BaseAppSidebar";

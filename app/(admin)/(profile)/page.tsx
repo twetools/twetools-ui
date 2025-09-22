@@ -25,13 +25,13 @@ const exampleUserData: UserProfileData = {
     city: "Nashville",
     state: "TN",
     zipCode: "37201",
-    country: "USA"
+    country: "USA",
   },
   stats: {
     totalProjects: 45,
     completedTasks: 128,
-    activeClients: 12
-  }
+    activeClients: 12,
+  },
 };
 
 export default function Profile() {
@@ -55,7 +55,7 @@ export default function Profile() {
       handlers={{
         onSave: handleSave,
         onEdit: handleEdit,
-        onCancel: handleCancel
+        onCancel: handleCancel,
       }}
       config={{
         title: "User Profile Demo",
@@ -66,7 +66,7 @@ export default function Profile() {
           <div className="text-xs text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded border border-blue-200 dark:border-blue-800">
             Demo Mode
           </div>
-        )
+        ),
       }}
     />
   );

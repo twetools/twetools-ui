@@ -53,10 +53,10 @@ interface UserProfilePageProps {
   config?: UserProfileConfig; // Optional - application can customize behavior
 }
 
-const UserProfilePage: React.FC<UserProfilePageProps> = ({ 
-  userData, 
+const UserProfilePage: React.FC<UserProfilePageProps> = ({
+  userData,
   handlers = {},
-  config = {} 
+  config = {},
 }) => {
   const {
     showEditButton = true,
@@ -64,7 +64,7 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ({
     allowAddressEdit = true,
     customActions,
     customSections,
-    title = "Profile"
+    title = "Profile",
   } = config;
 
   return (
@@ -75,17 +75,15 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ({
             {title}
           </h3>
           {customActions && (
-            <div className="flex items-center gap-2">
-              {customActions}
-            </div>
+            <div className="flex items-center gap-2">{customActions}</div>
           )}
         </div>
-        
+
         <div className="space-y-6">
           <UserMetaCard />
           <UserInfoCard />
           <UserAddressCard />
-          
+
           {customSections}
         </div>
       </div>
