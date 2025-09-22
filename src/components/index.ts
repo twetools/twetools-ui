@@ -120,6 +120,7 @@ export { DevModeProvider, useDevMode } from "../context/DevModeContext";
 export { ThemeProvider, useTheme } from "../context/ThemeContext";
 export { SidebarProvider, useSidebar } from "../context/SidebarContext";
 export { default as DevModeToggle } from "../context/DevModeToggle";
+export { Providers } from "../providers/providers";
 
 // Hooks
 export { default as useFormAutoFocus } from "../hooks/useFormAutoFocus";

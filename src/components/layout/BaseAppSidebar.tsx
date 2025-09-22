@@ -230,6 +230,7 @@ const BaseAppSidebar: React.FC<BaseAppSidebarProps> = ({
     // Only auto-open submenu if not manually toggled
     if (!manualSubmenu) {
       let found = false;
+      let targetSubmenu: { sectionIndex: number; itemIndex: number } | null = null;
 
       config.sections.forEach((section, sectionIndex) => {
         const filteredItems = section.items.filter(
@@ -241,21 +242,28 @@ const BaseAppSidebar: React.FC<BaseAppSidebarProps> = ({
             nav.subItems &&
             nav.subItems.some((subItem) => isActive(subItem.path, subItem.name))
           ) {
-            if (
-              !openSubmenu ||
-              openSubmenu.sectionIndex !== sectionIndex ||
-              openSubmenu.itemIndex !== itemIndex
-            ) {
-              setOpenSubmenu({ sectionIndex, itemIndex });
-            }
+            targetSubmenu = { sectionIndex, itemIndex };
             found = true;
           }
         });
       });
 
-      if (!found && openSubmenu) {
-        setOpenSubmenu(null);
-      }
+      // Only update state if the target submenu is different from current
+      setOpenSubmenu((currentSubmenu) => {
+        if (!found) {
+          return currentSubmenu ? null : currentSubmenu;
+        }
+        
+        if (
+          !currentSubmenu ||
+          currentSubmenu.sectionIndex !== targetSubmenu!.sectionIndex ||
+          currentSubmenu.itemIndex !== targetSubmenu!.itemIndex
+        ) {
+          return targetSubmenu;
+        }
+        
+        return currentSubmenu;
+      });
     }
   }, [
     pathname,
@@ -263,7 +271,6 @@ const BaseAppSidebar: React.FC<BaseAppSidebarProps> = ({
     config.sections,
     devMode,
     isActive,
-    openSubmenu,
   ]);
 
   useEffect(() => {

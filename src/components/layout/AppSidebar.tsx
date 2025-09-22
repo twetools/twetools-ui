@@ -2,11 +2,14 @@
 import React from "react";
 import { useSidebar } from "@/components";
 import BaseAppSidebar from "@/components/layout/BaseAppSidebar";
-import { getTweetoolsUiSidebarConfig } from "@/config/sidebarConfig";
+import type { AppSidebarConfig } from "@/types/navigation";
 
-const AppSidebar: React.FC = () => {
+interface AppSidebarProps {
+  config: AppSidebarConfig; // Required - each application must provide its own config
+}
+
+const AppSidebar: React.FC<AppSidebarProps> = ({ config }) => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
-  const config = getTweetoolsUiSidebarConfig();
 
   return (
     <BaseAppSidebar

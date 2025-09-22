@@ -25,21 +25,6 @@ export const getTweetoolsUiSidebarConfig = (): AppSidebarConfig => ({
           icon: createElement(AdminIcon, { className: "w-6 h-6" }),
           subItems: [{ name: "User Management", path: "/users" }],
         },
-
-        {
-          name: "Authentication",
-          icon: createElement(AuthIcon, { className: "w-6 h-6" }),
-          subItems: [
-            { name: "Sign In", path: "/signin", proOnly: false },
-            { name: "Sign Up", path: "/signup", proOnly: false },
-            { name: "Reset Password", path: "/reset-password", proOnly: true },
-            {
-              name: "Two Step Verification",
-              path: "/two-step-verification",
-              proOnly: true,
-            },
-          ],
-        },
         {
           name: "Form Elements",
           icon: createElement(FormElementsIcon, { className: "w-6 h-6" }),
