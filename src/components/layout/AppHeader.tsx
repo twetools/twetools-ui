@@ -97,7 +97,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
             )}
           </button>
 
-          <Link href="/" className="lg:hidden">
+          <Link href="/" className="lg:hidden" tabIndex={-1}>
             <Image
               width={154}
               height={32}
