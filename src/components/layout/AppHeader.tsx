@@ -31,7 +31,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   staticPages = [],
   brandConfig = {
     logo: "/images/logo/logo.svg",
-    title: "TailAdmin",
+    title: "tweool-ui",
     href: "/",
   },
   placeholder = "Search or type command...",

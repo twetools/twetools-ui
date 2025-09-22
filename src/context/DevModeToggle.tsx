@@ -1,7 +1,7 @@
 "use client";
 
 import { useDevMode } from "@/context/DevModeContext";
-import { IconCode, IconX } from "@tabler/icons-react";
+import { IconCode, IconBan } from "@tabler/icons-react";
 
 export default function DevModeToggle() {
   const { enabled, toggle } = useDevMode();
@@ -24,7 +24,7 @@ export default function DevModeToggle() {
       {enabled ? (
         <IconCode className="w-5 h-5" />
       ) : (
-        <IconX className="w-5 h-5" />
+        <IconBan className="w-5 h-5" />
       )}
     </button>
   );

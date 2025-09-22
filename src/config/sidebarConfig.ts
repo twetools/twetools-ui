@@ -1,5 +1,6 @@
 ﻿import { createElement } from "react";
 import {
+  IconHome as HomeIcon,
   IconLock as AuthIcon,
   IconForms as FormElementsIcon,
   IconLayoutSidebar as PageIcon,
@@ -16,6 +17,17 @@ export const getTweetoolsUiSidebarConfig = (): AppSidebarConfig => ({
     altText: "Twetools UI Logo",
   },
   sections: [
+    {
+      title: "Menu",
+      items: [
+        {
+          name: "Home",
+          icon: createElement(HomeIcon),
+          path: "/",
+          devOnly: false,
+        },
+      ],
+    },
     {
       title: "Examples",
       devOnly: false,
