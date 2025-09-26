@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { IconPlus, IconCategory } from "@tabler/icons-react";
 import ComponentCard from "@/components/common/ComponentCard";
 import Select from "@/components/form-elements/select/Select";
 
@@ -8,6 +9,13 @@ export default function DefaultSelects() {
   const [countrySelect, setCountrySelect] = useState<string>("");
   const [statusSelect, setStatusSelect] = useState<string>("");
   const [prioritySelect, setPrioritySelect] = useState<string>("");
+  const [categorySelect, setCategorySelect] = useState<string>("");
+  const [productSelect, setProductSelect] = useState<string>("");
+
+  // Mock function for adding new items
+  const handleAddCategory = () => {
+    alert("Add Category functionality would open a modal here");
+  };
 
   // Sample options data
   const countries = [
@@ -31,6 +39,20 @@ export default function DefaultSelects() {
     { value: "medium", label: "Medium Priority" },
     { value: "high", label: "High Priority" },
     { value: "urgent", label: "Urgent" },
+  ];
+
+  const categories = [
+    { value: "electronics", label: "Electronics" },
+    { value: "clothing", label: "Clothing" },
+    { value: "books", label: "Books" },
+    { value: "home", label: "Home & Garden" },
+  ];
+
+  const products = [
+    { value: "laptop", label: "Laptop" },
+    { value: "phone", label: "Smartphone" },
+    { value: "tablet", label: "Tablet" },
+    { value: "watch", label: "Smart Watch" },
   ];
 
   return (
@@ -92,6 +114,40 @@ export default function DefaultSelects() {
               onChange={setPrioritySelect}
               hint="This helps us provide region-specific features"
             />
+          </div>
+        </div>
+
+        {/* Left Icon Examples */}
+        <div>
+          <h4 className="text-base font-medium text-gray-700 dark:text-gray-300 mb-3">
+            Select with Left Icons
+          </h4>
+          <div className="space-y-4">
+            <Select
+              label="Manual Icon Setup"
+              id="manual-icon-select"
+              options={categories}
+              placeholder="Select category"
+              value={categorySelect}
+              onChange={setCategorySelect}
+              leftIcon={<IconPlus className="h-4 w-4" />}
+              iconBorder={true}
+              onLeftIconClick={handleAddCategory}
+            />
+
+            <Select
+              label="Convenience Add Item"
+              id="add-item-select"
+              options={products}
+              placeholder="Select product"
+              value={productSelect}
+              onChange={setProductSelect}
+              onAddItem={handleAddCategory}
+            />
+          </div>
+          <div className="text-xs text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-200 dark:border-blue-800 mt-2">
+            <strong>Manual approach:</strong> Use leftIcon, iconBorder, and onLeftIconClick for full control.<br />
+            <strong>Convenience approach:</strong> Use onAddItem prop for automatic plus icon setup.
           </div>
         </div>
       </div>
