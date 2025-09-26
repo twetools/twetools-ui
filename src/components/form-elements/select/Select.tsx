@@ -95,7 +95,7 @@ const SelectBase: React.FC<
           </span>
         </div>
       )}
-      
+
       <select
         id={id}
         name={name}
@@ -131,7 +131,7 @@ const SelectBase: React.FC<
           </option>
         ))}
       </select>
-      
+
       {/* Right Icon (Dropdown Arrow) */}
       <span className="absolute text-gray-500 -translate-y-1/2 pointer-events-none right-3 top-1/2 dark:text-gray-400">
         <DropdownIcon className="w-5 h-5" />

@@ -146,15 +146,14 @@ export default function DefaultSelects() {
             />
           </div>
           <div className="text-xs text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-200 dark:border-blue-800 mt-2">
-            <strong>Manual approach:</strong> Use leftIcon, iconBorder, and onLeftIconClick for full control.<br />
-            <strong>Convenience approach:</strong> Use onAddItem prop for automatic plus icon setup.
+            <strong>Manual approach:</strong> Use leftIcon, iconBorder, and
+            onLeftIconClick for full control.
+            <br />
+            <strong>Convenience approach:</strong> Use onAddItem prop for
+            automatic plus icon setup.
           </div>
         </div>
       </div>
     </ComponentCard>
   );
 }
-
-
-
-
