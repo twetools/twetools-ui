@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ComponentCard from "@/components/common/ComponentCard";
 import EmailField from "@/components/form-elements/input/EmailField";
 import NameField from "@/components/form-elements/input/NameField";
+import CurrencyField from "@/components/form-elements/input/CurrencyField";
 import CreditCardField from "@/components/form-elements/input/CreditCardField";
 import WebsiteField from "@/components/form-elements/input/WebsiteField";
 import PasswordField from "@/components/form-elements/input/PasswordField";
@@ -12,6 +13,7 @@ export default function SpecializedInputs() {
   const [website, setWebsite] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const [currency, setCurrency] = useState<string>("");
   const [creditCard, setCreditCard] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [time, setTime] = useState<string>("");
@@ -150,6 +152,15 @@ export default function SpecializedInputs() {
           hint="Valid format required only if you enter an email"
         />
 
+        <CurrencyField
+          label="Currency Amount"
+          id="currency-field"
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}
+          placeholder="0.00"
+          hint="Formats to 2 decimal places on blur (e.g., 123 becomes 123.00). Use decimalPlaces prop for different precision."
+        />
+
         <WebsiteField
           label="Website URL"
           id="website-field"
@@ -204,7 +215,3 @@ export default function SpecializedInputs() {
     </ComponentCard>
   );
 }
-
-
-
-
