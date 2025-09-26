@@ -6,8 +6,8 @@
   "types": "dist/index.d.ts",
   "style": "dist/compiled.css",
   "scripts": {
+    "start-examples": "next dev -p 3000",
     "dev-lib": "tsc --watch",
-    "dev-examples": "next dev -p 3000",
     "prod-lib": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json && npm run copy-css",
     "prod-examples": "next build",
     "prod-build": "npm run prod-examples && npm run prod-lib && npm run prod-extract-css",

@@ -129,7 +129,7 @@ const SelectBase: React.FC<
           }`}
           onClick={onAddItem}
         >
-          <IconPlus className="w-4 h-4" />
+          <IconPlus />
         </span>
       )}
 

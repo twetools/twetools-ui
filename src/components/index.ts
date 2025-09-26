@@ -42,6 +42,7 @@ export { default as WorkPhoneField } from "./form-elements/phone/WorkPhoneField"
 
 // Select Components
 export { default as Select } from "./form-elements/select/Select";
+export { default as SelectWithAdd } from "./form-elements/select/SelectWithAdd";
 export { default as MultiSelect } from "./form-elements/select/MultiSelect";
 export { default as CountrySelect } from "./form-elements/select/CountrySelect";
 export { default as StateSelect } from "./form-elements/select/StateSelect";

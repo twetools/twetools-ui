@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { IconPlus, IconCategory } from "@tabler/icons-react";
+import { IconFlag2 } from "@tabler/icons-react";
 import ComponentCard from "@/components/common/ComponentCard";
 import Select from "@/components/form-elements/select/Select";
+import SelectWithAdd from "@/components/form-elements/select/SelectWithAdd";
 
 export default function DefaultSelects() {
   const [basicSelect, setBasicSelect] = useState<string>("");
@@ -124,20 +125,19 @@ export default function DefaultSelects() {
           </h4>
           <div className="space-y-4">
             <Select
-              label="Manual Icon Setup"
+              label="Select with Left Icon"
               id="manual-icon-select"
-              options={categories}
-              placeholder="Select category"
+              options={statuses}
+              placeholder="Select status"
               value={categorySelect}
               onChange={setCategorySelect}
-              leftIcon={<IconPlus className="h-4 w-4" />}
+              leftIcon={<IconFlag2 />}
               iconBorder={true}
-              onLeftIconClick={handleAddCategory}
             />
 
-            <Select
-              label="Convenience Add Item"
-              id="add-item-select"
+            <SelectWithAdd
+              label="SelectWithAdd Component"
+              id="select-with-add"
               options={products}
               placeholder="Select product"
               value={productSelect}
@@ -146,11 +146,11 @@ export default function DefaultSelects() {
             />
           </div>
           <div className="text-xs text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-200 dark:border-blue-800 mt-2">
-            <strong>Manual approach:</strong> Use leftIcon, iconBorder, and
-            onLeftIconClick for full control.
+            <strong>Select with leftIcon:</strong> Use leftIcon, iconBorder, and
+            onLeftIconClick for custom icons and functionality.
             <br />
-            <strong>Convenience approach:</strong> Use onAddItem prop for
-            automatic plus icon setup.
+            <strong>SelectWithAdd component:</strong> Dedicated component with
+            built-in plus icon for adding new items to the dropdown list.
           </div>
         </div>
       </div>
