@@ -114,7 +114,11 @@ const SelectBase: React.FC<
         <span
           className={`absolute left-0 top-1/2 -translate-y-1/2 px-3.5 py-3 text-gray-500 dark:text-gray-400 ${
             iconBorder ? "border-r border-gray-200 dark:border-gray-800" : ""
-          } ${onLeftIconClick ? "cursor-pointer" : ""}`}
+          } ${
+            onLeftIconClick
+              ? "cursor-pointer transition-colors duration-200 hover:text-brand-600 hover:dark:text-brand-400"
+              : ""
+          }`}
           onClick={onLeftIconClick}
         >
           {leftIcon}
@@ -124,7 +128,7 @@ const SelectBase: React.FC<
       {/* Add Item Icon - Shows when onAddItem is provided */}
       {onAddItem && !leftIcon && (
         <span
-          className={`absolute left-0 top-1/2 -translate-y-1/2 px-3.5 py-3 text-gray-500 dark:text-gray-400 cursor-pointer ${
+          className={`absolute left-0 top-1/2 -translate-y-1/2 px-3.5 py-3 text-gray-500 dark:text-gray-400 cursor-pointer transition-colors duration-200 hover:text-brand-600 hover:dark:text-brand-400 ${
             iconBorder ? "border-r border-gray-200 dark:border-gray-800" : ""
           }`}
           onClick={onAddItem}
