@@ -66,6 +66,7 @@ export const getTweetoolsUiSidebarConfig = (): AppSidebarConfig => ({
             { name: "Buttons", path: "/buttons" },
             { name: "Buttons Group", path: "/buttons-group" },
             { name: "Dropdowns", path: "/dropdowns" },
+            { name: "Icons", path: "/icons" },
             { name: "Modals", path: "/modals" },
             { name: "Tables", path: "/tables" },
           ],
